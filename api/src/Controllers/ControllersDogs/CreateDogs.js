@@ -1,4 +1,4 @@
-const { Dog, Temperament } = require("../../DataBases/db");
+const { Dog, Temperament } = require("../../db");
 
 const createDog = async (req, res) => {
   try{

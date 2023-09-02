@@ -1,12 +1,14 @@
 const URL = 'https://api.thedogapi.com/v1/breeds/search'
 const axios = require('axios')
+const {Dog, Temperament} = require('../../db')
 require('dotenv').config()
-// const {API_KEY}=process.env //despues la uso
-console.log('hola')
+const { Op } = require('sequelize');
+ const {API_KEY}=process.env
+console.log('name')
 const getDogsByName = async (req, res) => { //funcion asincrona, toma dos arg, req(solicitud http) res(respuesta http)
 try{
 const{ name } = req.query
-const apiRes = await axios(`${URL}?q=${name}`)
+const apiRes = await axios(`${URL}?q=${name}&api_key=${API_KEY}`)
 const apiDogs = apiRes.data   
 
 //consulta a la base de datos
@@ -18,8 +20,14 @@ const dbDogs = await Dog.findAll({
     },
     include: [Temperament]
 })
-res.json(data)
-console.log("hola")
+ // Combinar resultados de la API y la base de datos
+const allDogs = [...apiDogs, ...dbDogs];
+if (allDogs.length === 0) {
+    return res.status(404).json({ message: 'No se encontraron razas de perros con ese nombre.' });
+  }
+  console.log("se mostro el perro buscado por nombre")
+res.json(allDogs)
+
 }
 catch(error){
 console.error(error);
