@@ -5,9 +5,11 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('Dog', {
     ID: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
+      type: DataTypes.UUID,
+        primaryKey: true,
+        unique: true,
+        allowNull: false,
+        defaultValue: DataTypes.UUIDV4,
   },
   imagen: {
       type: DataTypes.STRING,
@@ -24,7 +26,11 @@ module.exports = (sequelize) => {
   AñosDeVida: {
       type: DataTypes.INTEGER,
       allowNull: false
-  }
+  },
+  // temperaments: {
+  //   type: DataTypes.STRING,
+  //   allowNull: false
+  // }
   },  
       { timestamps: false }
    );

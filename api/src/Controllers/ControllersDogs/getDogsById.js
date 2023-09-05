@@ -2,28 +2,33 @@ require('dotenv').config()
 const URL = 'https://api.thedogapi.com/v1/breeds/'
 const axios = require('axios')
 const {API_KEY}=process.env
-const { Dog, Temperament } =require('../../db')
+const { Dog, Temperaments } =require('../../db')
 console.log('id')
 const getDogsById = async (req, res) =>{
-    console.log('id2')
-    try{
+    try {
         const { id } = req.params;
-         // Buscar en la base de datos local
-         const localDog = await Dog.findByPk(id, {
-            include: [Temperament ],
-         });
-         if (localDog) {
-            // Si se encuentra en la base de datos local, retornar ese resultado
-            res.json(localDog);
-        }else {
-            const { data } = await axios(`${URL}${id}?api_key=${API_KEY}`)
-            console.log('se mostro el id')
-            res.json( data )
+        console.log(id);
+
+        // Verificar si el ID es un número entero
+        if (!isNaN(id)) {
+            // Si es un número entero, buscar en la API
+            const { data } = await axios.get(`${URL}${id}?api_key=${API_KEY}`);
+            res.json(data);
+        } else {
+            // Si no es un número entero, buscar en la base de datos local por UUID
+            const localDog = await Dog.findByPk(id, {
+                include: [Temperaments],
+            });
+
+            if (localDog) {
+                res.json(localDog);
+            } else {
+                res.status(404).json({ error: 'Perro no encontrado en la base de datos local' });
+            }
         }
-        
-    }
-    catch{
-        res.status(500).json({error: 'Error al obtener el dog'})
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
     }
 }
 

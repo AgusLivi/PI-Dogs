@@ -1,6 +1,6 @@
 const URL = 'https://api.thedogapi.com/v1/breeds/search'
 const axios = require('axios')
-const {Dog, Temperament} = require('../../db')
+const {Dog, Temperaments} = require('../../db')
 require('dotenv').config()
 const { Op } = require('sequelize');
  const {API_KEY}=process.env
@@ -18,7 +18,7 @@ const dbDogs = await Dog.findAll({
             [Op.iLike]: `%${name}%`,
         },
     },
-    include: [Temperament]
+    include: [Temperaments]
 })
  // Combinar resultados de la API y la base de datos
 const allDogs = [...apiDogs, ...dbDogs];
