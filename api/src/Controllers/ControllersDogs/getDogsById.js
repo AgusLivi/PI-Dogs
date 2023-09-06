@@ -21,7 +21,15 @@ const getDogsById = async (req, res) =>{
             });
 
             if (localDog) {
-                res.json(localDog);
+                const modifiedData = {
+                    imagen: localDog.imagen,
+                    name: localDog.name,
+                    peso: localDog.peso,
+                    AñosDeVida: localDog.AñosDeVida,
+                    Temperaments: localDog.Temperaments.map(temp => temp.name)
+                };
+                res.json(modifiedData);
+                
             } else {
                 res.status(404).json({ error: 'Perro no encontrado en la base de datos local' });
             }
