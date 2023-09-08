@@ -26,6 +26,7 @@ if (allDogs.length === 0) {
     return res.status(404).json({ message: 'No se encontraron razas de perros con ese nombre.' });
   }
   console.log("se mostro el perro buscado por nombre")
+ console.log("alison");
 res.json(allDogs)
 
 }

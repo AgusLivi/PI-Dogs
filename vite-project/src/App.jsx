@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import  HomePage  from './components/Home/Home'
+import  {HomePage}  from './components/Home/Home'
 import './App.css'
+import DogShow from './components/Card/ShowDogs'
 
 function App() {
   
@@ -9,7 +10,8 @@ function App() {
   return (
     
       <div className="app">
-        <homePage />
+        <HomePage />
+        <DogShow/>
       </div>
    
   )

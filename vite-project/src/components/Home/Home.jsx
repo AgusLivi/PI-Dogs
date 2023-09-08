@@ -1,16 +1,20 @@
 import React, {useState} from 'react';
 import { getDogsByName } from '../../Redux/action';
+import { useDispatch } from 'react-redux'
 
 export const HomePage = ()=>{
 
     const [search, setSearch] = useState('');
 
-    const handleSearch = (event) => {
-        event.preventDefault()
-		dispatch(searchDogsByName(search))
-		setSearch('')
-    }
+    const dispatch = useDispatch()
+
+    const inputHandler = (e) => {
+      setSearch(e.target.value);
+    };
   
+    const handleSubmit = () => {
+      dispatch(getDogsByName(search));
+    };
 
     return(
         <div className="home-page">
@@ -18,12 +22,11 @@ export const HomePage = ()=>{
              <h1>Busqueda de Razas de Perros</h1>
               <div className="search-bar">
                 <input
-                type="text"
-                paceholder="Buscar por nombre"
+                type="search"
                 value={search}
-                onChange={(event) => setSearch(event.target.value)}
+                onChange={inputHandler}
                 />
-                <button onClick={handleSearch}>Buscar</button>
+                <button onClick={handleSubmit}>Buscar</button>
               </div>
             </form>
 
