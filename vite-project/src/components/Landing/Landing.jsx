@@ -8,8 +8,8 @@ const Landin = ()=>{
 
     return(
         <div>
-            <h1>Dogs</h1>}
-            <button onClick={}>Home</button>
+            <h1>Dogs</h1>
+            <button onClick={as}>Home</button>
         </div>
     )
 }
