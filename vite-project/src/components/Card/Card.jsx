@@ -1,12 +1,19 @@
-import React from "react";
+import React from 'react'
 
-export const DogCard = ({dog}) => {
-    return (
-        <div>
-            <img src={dog.image} alt={dog.name}/>
-            <h2>{dog.name}</h2>
-            <p>Temperamentos: {dog.temperaments.join(', ')}</p>
-            <p>Peso: {dog.weight}</p>
-        </div>
-    )
+const Card = ({name, id, weight, temperament, image}) => {
+
+  return (
+    <div>
+
+        <h1>
+            {name}
+        </h1>
+        <h1>{weight}</h1>
+        <h1>{temperament}</h1>
+        <img src={image}/>
+                
+    </div>
+  )
 }
+
+export default Card
