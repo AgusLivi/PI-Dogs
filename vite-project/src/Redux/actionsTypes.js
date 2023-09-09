@@ -1,3 +1,5 @@
 export const GET_ALL_DOGS = 'GET_ALL_DOGS'
 export const GET_TEMPERAMENTS = 'GET_TEMPERAMENTS'
 export const SEARCH_BY_NAME = 'SEARCH_BY_NAME'
+export const SEARCH_BY_ID = 'SEARCH_BY_ID'
+export const CREATE_DOG = 'CREATE_DOG'

@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
         allowNull: false,
         defaultValue: DataTypes.UUIDV4,
   },
-  imagen: {
+    imagen: {
       type: DataTypes.STRING,
       allowNull: false,
   },
@@ -23,7 +23,7 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
   },
-  AñosDeVida: {
+    AñosDeVida: {
       type: DataTypes.INTEGER,
       allowNull: false
   },

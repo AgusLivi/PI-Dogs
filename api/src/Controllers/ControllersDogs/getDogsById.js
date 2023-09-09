@@ -1,7 +1,7 @@
 require('dotenv').config()
 const URL = 'https://api.thedogapi.com/v1/breeds/'
 const axios = require('axios')
-const {API_KEY}=process.env
+const {API_KEY} = process.env
 const { Dog, Temperaments } =require('../../db')
 console.log('id')
 const getDogsById = async (req, res) =>{

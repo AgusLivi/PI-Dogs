@@ -10,7 +10,7 @@ const Card = ({name, id, weight, temperament, image}) => {
         <h1>{weight}</h1>
         <h1>{temperament}</h1>
         <img src={image} alt={name}/>
-        <Link to={`/dog/${id}`}>Ver detalle</Link>
+        <Link to={`/dogs/${id}`}>Ver detalle</Link>
                 
     </div>
   )

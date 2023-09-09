@@ -23,18 +23,16 @@ console.log(allDogs);
   return (
     <div>
         {
-            allDogs.map((dog)=>(
-                <Card
+            allDogs.map((dog) => (
+              <Card
                 key={dog?.id}
                 id={dog?.id}
                 name={dog?.name}
                 temperament={dog?.temperament}
-                weight={dog?.weight.metric}
-                image={dog?.image.url}
-                />
-
+                weight={dog?.weight?.metric} // Usa ? para weight.metric si es necesario
+                image={dog?.image?.url} // Usa ? para image.url si es necesario
+              />
             ))
-
 
         }
     </div>

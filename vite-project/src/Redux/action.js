@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_TEMPERAMENTS, GET_ALL_DOGS, SEARCH_BY_NAME } from './actionsTypes';    
+import { GET_TEMPERAMENTS, GET_ALL_DOGS, SEARCH_BY_NAME, CREATE_DOG } from './actionsTypes';    
 
 
 const endPointDog='http://localhost:3001/dogs'
@@ -46,5 +46,20 @@ export const getDogsByName = search => {
         } catch (error){
             alert('No se encontraron razas con ese nombre')
         }
+    }
+}
+
+export const createDog = (formData)=>{
+    return async (dispatch)=>{
+        try{
+            const { data } = await axios.post('http://localhost:3001/create', formData);
+            return dispatch({
+                type: CREATE_DOG,
+                payload: data
+            })
+        }catch (error){
+            console.error('Error al crear raza de perro')
+        }
+       
     }
 }

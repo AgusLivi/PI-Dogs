@@ -7,6 +7,7 @@ import { Routes, Route } from 'react-router-dom'
 import Cards from './components/Cards/Cards'
 import SearchBar from './components/SearchBar/SearchBar'
 import Detail from './components/Detail/Detail'
+import Form from './components/Form/Form'
 
 
 
@@ -21,8 +22,8 @@ function App() {
         <Route path="/Home" element={<HomePage/>}/>
         <Route path="/Cards" element={<Cards/>} />
         <Route path="/Search" element={<SearchBar/>}/>
-        <Route path="/dog/:id" element={<Detail/>} />
-      
+        <Route path="/dogs/:id" element={<Detail/>} />
+        <Route path="/form" element={<Form />} />
       </Routes>
         
       </div>

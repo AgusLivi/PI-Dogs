@@ -1,5 +1,6 @@
 import {
-    GET_ALL_DOGS, GET_TEMPERAMENTS, SEARCH_BY_NAME
+    CREATE_DOG,
+    GET_ALL_DOGS, GET_TEMPERAMENTS, SEARCH_BY_NAME, 
 } from './actionsTypes'
 const initialState = {
     dogs: [],
@@ -26,6 +27,11 @@ const reducer = (state = initialState, {type, payload}) =>{
                 ...state,
                 dogs: payload
             }
+            case CREATE_DOG:
+                return {
+                    ...state,
+                    dogs: [...state.dogs, payload]
+                }
             default:
                 return state;
     }
