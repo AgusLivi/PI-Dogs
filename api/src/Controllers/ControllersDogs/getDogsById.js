@@ -22,10 +22,10 @@ const getDogsById = async (req, res) =>{
 
             if (localDog) {
                 const modifiedData = {
-                    imagen: localDog.imagen,
+                    image: localDog.image,
                     name: localDog.name,
-                    peso: localDog.peso,
-                    AñosDeVida: localDog.AñosDeVida,
+                    weight_min: localDog.weight_min,
+                    life_span: localDog.life_span,
                     Temperaments: localDog.Temperaments.map(temp => temp.name)
                 };
                 res.json(modifiedData);

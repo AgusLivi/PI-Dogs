@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
         allowNull: false,
         defaultValue: DataTypes.UUIDV4,
   },
-    imagen: {
+    image: {
       type: DataTypes.STRING,
       allowNull: false,
   },
@@ -19,11 +19,15 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    peso: {
+    weight_min: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    weight_max: {
       type: DataTypes.INTEGER,
       allowNull: false,
   },
-    AñosDeVida: {
+    life_span: {
       type: DataTypes.INTEGER,
       allowNull: false
   },

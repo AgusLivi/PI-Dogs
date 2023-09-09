@@ -5,10 +5,11 @@ const Form = () => {
   const dispatch = useDispatch()
   const [formData, setFormData] = useState({
     name:'',
-    imagen:'',
+    image:'',
     weight_min:'',
     weight_max:'',
-    life_span:''
+    life_span:'',
+    temperament: []
   })
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -17,6 +18,23 @@ const Form = () => {
       [name]: value,
     });
   };
+  const handleTemperamentChange = (event) =>{
+    const {name, checked} = event.target;
+    if (checked) {
+      // Agregar el temperamento si está marcado
+      setFormData({
+        ...formData,
+        temperament: [...formData.temperament, name]
+      })
+    } else {
+      // Eliminar el temperamento si se desmarca
+      setFormData({
+        ...formData,
+        temperament: formData.temperament.filter((temp)=> temp !== name),
+      })
+    }
+  }
+
 
   const handleSubmit = async (event) =>{
     event.preventDefault();
@@ -24,9 +42,11 @@ const Form = () => {
     // Limpia los campos del formulario después de enviar
     setFormData({
       name: '',
-      imagen: '',
-      peso: '',
-      AñosDeVida: '',
+      image: '',
+      weight_min: '',
+      weight_max: '',
+      life_span: '',
+      temperament: [],
     })
   }
 
@@ -53,31 +73,64 @@ const Form = () => {
           imagen: 
           <input
           type='text'
-          name='imagen'
-          value={formData.imagen}
+          name='image'
+          value={formData.image}
           onChange={handleInputChange}
           />
         </label>
         <br />
         <label>
-          Peso:
+          Peso minimo:
           <input
-          type = "text"
-          name = "peso"
-          value={formData.peso}
+          type = "number"
+          name = "weight_min"
+          value={formData.weight_min}
           onChange={handleInputChange}
         />
         </label>
         <br />
         <label>
+          Peso Máximo:
+          <input
+            type="number"
+            name="weight_max"
+            value={formData.weight_max}
+            onChange={handleInputChange}
+          />
+        </label>
+        <br />
+        <label>
         Años de Vida:
           <input
-          type="text"
-          name="AñosDeVida"
-          value={formData.AñosDeVida}
+          type="number"
+          name="life_span"
+          value={formData.life_span}
           onChange={handleInputChange}
           />
         </label>
+        <br />
+        <label>
+          Temperamentos:
+          <div>
+            <input
+              type="checkbox"
+              name="temperament1"
+              checked={formData.temperament.includes('temperament1')}
+              onChange={handleTemperamentChange}
+            />
+              Temperamento 1
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              name="temperament2"
+              checked={formData.temperament.includes('temperament2')}
+              onChange={handleTemperamentChange}
+            />
+            Temperamento 2
+          </div>
+         </label>
+        
         <br />
         <button type="submit">Crear Raza</button>
       </form>

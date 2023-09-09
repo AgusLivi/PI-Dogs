@@ -56,19 +56,21 @@ const postDog = async (req, res) => {
   try{
     const {
         name,
-        peso,
-        AñosDeVida,
-        imagen,
+        weight_min,
+        weight_max,
+        life_span,
+        image,
         temperaments,
         
     } = req.body
     
     const newDog = await Dog.create({
-        name,
-        peso,
-        AñosDeVida,   
-        imagen,
-        temperaments
+      name,
+      weight_min,
+      weight_max,
+      life_span,
+      image,
+      temperaments,
      })
      console.log(temperaments)
         // Asocia los temperamentos al perro recién creado
@@ -85,7 +87,7 @@ const postDog = async (req, res) => {
      res.status(201).json(newDog);
   } catch(error){
     console.error(error);
-    res.status(500).json({error: 'error al crear la raza de perro'})
+    res.status(500).json({error: error.message})
   }
 }
 
