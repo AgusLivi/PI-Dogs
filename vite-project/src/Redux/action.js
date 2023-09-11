@@ -1,9 +1,21 @@
 import axios from 'axios';
-import { GET_TEMPERAMENTS, GET_ALL_DOGS, SEARCH_BY_NAME, CREATE_DOG } from './actionsTypes';    
-
+import {
+    CREATE_DOG,
+    GET_ALL_DOGS,
+     GET_TEMPERAMENTS,
+      SEARCH_BY_NAME, 
+      SELECTED_ORDER, 
+      SELECTED_ORIGIN,
+       SELECTED_TEMPERAMENTS,
+        ORDER_DOGS, 
+        FILTERED_BY_TEMPERAMENT,
+         ORIGIN,
+         RESET_ALL_FILTERS,
+         CURRENT_PAGE
+} from './actionsTypes'
 
 const endPointDog='http://localhost:3001/dogs'
-const endPointTemperament='http://localhost:3001/dogs/temperament/:temperament'
+const endPointTemperament='http://localhost:3001/dogs/temperament'
 
 export const getAllDogs = () => {
     return async dispatch => {
@@ -19,14 +31,16 @@ export const getAllDogs = () => {
     }
 }
 
-export const getTemperaments = ()=>{
+export const getTemperaments = (temperament)=>{
     return async dispatch => {
         try {
-            const { data } = await axios(endPointTemperament)
+            const { data } = await axios(`${endPointTemperament}/${temperament}`)
+            console.log(data, "esto es data de axios en action1")
             return dispatch({
                 type: GET_TEMPERAMENTS,
-                payload: data
+                payload: data 
             })
+            
         } catch(error){
             alert(error.message)
         }
@@ -62,4 +76,74 @@ export const createDog = (formData)=>{
         }
        
     }
+}
+export const filterByTemperament = temperaments => {
+	return dispatch => {
+		return dispatch({
+			type: FILTERED_BY_TEMPERAMENT,
+			payload: temperaments,
+		})
+	}
+}
+export const orderDogs = order => {
+	return dispatch => {
+		return dispatch({
+			type: ORDER_DOGS,
+			payload: order,
+		})
+	}
+}
+export const setSelectedTemperaments = temperaments => {
+	return dispatch => {
+		return dispatch({
+			type: SELECTED_TEMPERAMENTS,
+			payload: temperaments,
+		})
+	}
+}
+export const setSelectedOrder = order => {
+	return dispatch => {
+		return dispatch({
+			type: SELECTED_ORDER,
+			payload: order,
+		})
+	}
+}
+export const setSelectedOrigin = origin => {
+	return async dispatch => {
+        try {
+            const { data } = await axios.post('http://localhost:3001/');
+            return dispatch({
+                type: SELECTED_ORIGIN,
+                payload: origin,
+            })
+        }catch{
+
+        }
+		
+	}
+}
+export const dogsFrom = typeOfId => {
+	return dispatch => {
+		return dispatch({
+			type: ORIGIN,
+			payload: typeOfId,
+		})
+	}
+}
+export const resetAllFilters = () => {
+	return dispatch => {
+		return dispatch({
+			type: RESET_ALL_FILTERS,
+			payload: [],
+		})
+	}
+}
+export const setCurrentPage = page => {
+	return dispatch => {
+		return dispatch({
+			type: CURRENT_PAGE,
+			payload: Number(page),
+		})
+	}
 }

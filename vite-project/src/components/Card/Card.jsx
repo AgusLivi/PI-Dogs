@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import './CardModule.css'
 
 const Card = ({name, id, weight, temperament, image}) => {
 
   return (
-    <div>
+    <div className='card'>
 
         <h1>{name}</h1>
         <h1>{weight}</h1>

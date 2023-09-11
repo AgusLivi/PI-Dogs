@@ -1,0 +1,26 @@
+.navbar {
+    background-color: #fc7272; /* Color de fondo del navbar */
+    color: white; /* Color del texto en el navbar */
+    padding: 10px; /* Espaciado interior del navbar */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+  
+  .navbar ul {
+    list-style-type: none; /* Quita los marcadores de lista */
+    padding: 0;
+  }
+  
+  .navbar li {
+    display: inline;
+    margin-right: 20px; /* Espacio entre elementos de la lista */
+  }
+  
+  .navbar a {
+    text-decoration: none; /* Quita la decoración de enlace */
+    color: white; /* Color del texto en los enlaces */
+    font-size: 1.2rem; /* Tamaño de fuente de los enlaces */
+  }

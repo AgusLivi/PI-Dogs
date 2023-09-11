@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { getDogsByName } from '../../Redux/action';
 import { useDispatch } from 'react-redux'
+import './SearchBarModule.css'
 
  const SearchBar = ()=>{
 
@@ -21,7 +22,7 @@ import { useDispatch } from 'react-redux'
 
     return(
         <div className="home-page">
-              <h1>Busqueda de Razas de Perros</h1>
+              <h1 className='titulo'>Busqueda de Razas de Perros</h1>
               <div>
                 <input
                   type="text"

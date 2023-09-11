@@ -1,0 +1,34 @@
+.landing-container {
+    background-image: url('https://images.hdqwalls.com/download/kids-and-dogs-qhd-1920x1080.jpg');
+    background-size: cover; /* Ajusta la imagen al tamaño del contenedor sin recortarla */
+  background-repeat: no-repeat; /* Evita la repetición de la imagen */
+  width: 100vw; /* Ancho al 100% del viewport */
+  height: 100vh; /* Alto al 100% del viewport */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white; /* Color de texto */
+  text-align: center;
+  }
+  
+  .landing-title {
+    font-size: 2rem; /* Tamaño de fuente del título */
+    margin-bottom: 20px; /* Espacio inferior */
+  }
+  
+  .landing-button {
+    text-decoration: none; /* Quita la decoración de enlace */
+    padding: 10px 20px; /* Espaciado del botón */
+    background-color: transparent; /* Fondo transparente */
+    color: white; /* Color del texto del botón */
+    border: 2px solid rgba(255, 255, 255, 0.5); /* Borde blanco con transparencia */
+    border-radius: 5px;
+    font-size: 1.2rem; /* Tamaño de fuente del botón */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Efecto de transición al pasar el ratón */
+  }
+  
+  .landing-button:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Cambia el color de fondo al pasar el ratón */
+  }
