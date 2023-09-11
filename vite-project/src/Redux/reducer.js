@@ -11,6 +11,7 @@ import {
          ORIGIN,
          RESET_ALL_FILTERS,
          CURRENT_PAGE,
+         DOGS_ORIGIN
 } from './actionsTypes'
 import { ascendingOrder, descendingOrder } from './Filters/Order'
 import { filterByName, filterMaster } from './Filters/Filters'
@@ -67,6 +68,7 @@ const reducer = (state = initialState, {type, payload}) =>{
                 currentPage: 1,
             }
             case CREATE_DOG:
+              
                 return {
                     ...state,
                     createdDogs: [...state.createdDogs, payload]
@@ -88,9 +90,10 @@ const reducer = (state = initialState, {type, payload}) =>{
 				selectedOrigin: [...payload],
 			}
             case FILTERED_BY_TEMPERAMENT:
+               
                 if (payload.length && payload !== 'error') {
                     filteredDogs = filterMaster(state.dogsCopy, [
-                        state.selectedTemperaments,
+                        payload,
                         state.selectedOrigin,
                     ])
                     return {
@@ -183,6 +186,37 @@ const reducer = (state = initialState, {type, payload}) =>{
 				...state,
 				currentPage: payload,
 			}
+
+            case DOGS_ORIGIN : {
+                let originDogs = [...state.dogsCopy]
+                if(action.payload === 'All'){
+                    return {
+                        ...state,
+                        dogs: [...state.dogsCopy]
+                    }
+                }
+                if(action.payload === 'api') {
+                    const apiDogs = originDogs.filter((game) => Number.isInteger(game.id))
+                    
+    
+                    return{
+                        ...state,
+                        dogs: apiDogs
+                    }
+                }
+    
+                if (action.payload === 'db') {
+                    const uuidv4Pattern = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+                    
+                    const dbDogs = originDogs.filter((game) => uuidv4Pattern.test(game.id));
+                   
+                    
+                    return {
+                      ...state,
+                     dogs: dbDogs,
+                    };
+                  }
+            }
 
             
             default:

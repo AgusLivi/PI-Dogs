@@ -11,8 +11,9 @@ export const filterByName = (dogs, dogsFilteredByName) => {
 }
 
 export const filterMaster = (dogsCopy, selectedFilters) => {
+	
 	const selectedTemperaments = selectedFilters[0].map(
-		selected => selected.value,
+		selected => selected,
 	)
 	const selectedOrigin = selectedFilters[1][0]?.value
 	let filteredDogsByTemp = []
@@ -21,6 +22,7 @@ export const filterMaster = (dogsCopy, selectedFilters) => {
 	if (selectedTemperaments.length) {
 		dogsCopy.forEach(dog => {
 			let check = false
+			
 
 			if (dog.temperament) {
 				for (let i = 0; i < selectedTemperaments.length; i++) {

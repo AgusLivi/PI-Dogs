@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Card from '../Card/Card';
 import './CardsModule.css'
-import { setCurrentPage } from '../../Redux/action';
+import { setCurrentPage, getTemperaments } from '../../Redux/action';
 const Cards = () => {
     const dispatch = useDispatch();
     const allDogs = useSelector((state)=>state.dogs)
@@ -15,6 +15,7 @@ const Cards = () => {
 
     useEffect(() => {
         dispatch(getAllDogs())
+        dispatch(getTemperaments())
 
       }, [dispatch])
 
@@ -22,7 +23,7 @@ const Cards = () => {
         const mostrarPerrosEnPagina = () => {
           const inicio = (paginaActual - 1) * elementosPorPagina;
           const fin = inicio + elementosPorPagina;
-          console.log(`Inicio: ${inicio}, Fin: ${fin}`);
+          
           return allDogs.slice(inicio, fin);
         };
   const irAPaginaAnterior = () => {
@@ -41,9 +42,8 @@ const Cards = () => {
     }
   };
 
-console.log(allDogs);
-    console.log(mostrarPerrosEnPagina)
-    
+
+
  
 return (
   <div className="cards-container">

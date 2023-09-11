@@ -4,7 +4,7 @@ const {Dog, Temperaments} = require('../../db')
 require('dotenv').config()
 const { Op } = require('sequelize');
  const {API_KEY}=process.env
-console.log('name')
+
 const getDogsByName = async (req, res) => { //funcion asincrona, toma dos arg, req(solicitud http) res(respuesta http)
 try{
 const{ name } = req.query
@@ -25,8 +25,8 @@ const allDogs = [...apiDogs, ...dbDogs];
 if (allDogs.length === 0) {
     return res.status(404).json({ message: 'No se encontraron razas de perros con ese nombre.' });
   }
-  console.log("se mostro el perro buscado por nombre")
- console.log("alison");
+  
+ 
 res.json(allDogs)
 
 }

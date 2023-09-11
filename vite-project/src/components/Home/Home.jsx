@@ -7,6 +7,9 @@ import {
   filterByTemperament,
   setSelectedOrigin, // Agrega setSelectedOrigin al import
   orderDogs,
+  dogsOrigin,
+  getTemperaments,
+  setSelectedTemperaments
 } from '../../Redux/action'; // Importa las acciones necesarias
 
 function HomePage() {
@@ -22,6 +25,7 @@ function HomePage() {
 
   // Función para aplicar el filtro de temperamento
   const handleTemperamentChange = (value) => {
+    dispatch(setSelectedTemperaments([value]))
     setSelectedTemperament(value); // Actualiza el estado local del selector
     dispatch(filterByTemperament([value])); // Despacha una acción para aplicar el filtro en el estado de Redux
   };
@@ -34,6 +38,10 @@ function HomePage() {
   const handleOrderChange = (value) => {
     setSelectedOrder(value); // Actualiza el estado local del selector
     dispatch(orderDogs(value)); // Despacha una acción para aplicar el filtro en el estado de Redux
+  };
+  const filterOrigin = (e) => {
+    const { value } = e.target;
+    dispatch(dogsOrigin(value));
   };
 
 
@@ -79,6 +87,14 @@ function HomePage() {
         <option value="Z - A">Z - A</option>
         {/* Agrega más opciones de orden según tus necesidades */}
       </select>
+
+      {/*selector api o base de datos*/}
+      <select name="Origin" onChange={filterOrigin}>
+            <optgroup key="origin" label="Origin">
+            <option value="api">API</option>
+            <option value="db">DB</option>
+           </optgroup>
+          </select>
 
       
         <Cards />

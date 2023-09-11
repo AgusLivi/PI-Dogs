@@ -3,11 +3,11 @@ const URL = 'https://api.thedogapi.com/v1/breeds/'
 const axios = require('axios')
 const {API_KEY} = process.env
 const { Dog, Temperaments } =require('../../db')
-console.log('id')
+
 const getDogsById = async (req, res) =>{
     try {
         const { id } = req.params;
-        console.log(id);
+       
 
         // Verificar si el ID es un número entero
         if (!isNaN(id)) {

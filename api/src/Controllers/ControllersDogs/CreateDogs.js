@@ -25,7 +25,7 @@
 //       AñosDeVida,
 //       temperament,
 //     } = req.body;
-// console.log(temperament)
+
 //     const newDog = {
 //       name,
 //       imagen,
@@ -50,9 +50,9 @@
 
 
 const { Dog, Temperaments } = require("../../db");
-console.log('llega a la carpeta create');
+
 const postDog = async (req, res) => {
-  console.log('entra al try');
+
   try{
     const {
         name,
@@ -72,7 +72,7 @@ const postDog = async (req, res) => {
       image,
       temperaments,
      })
-     console.log(temperaments)
+     
         // Asocia los temperamentos al perro recién creado
      if (temperaments && temperaments.length > 0) {
       const temperamentModels = await Temperaments.findAll({

@@ -11,7 +11,8 @@ import {
         FILTERED_BY_TEMPERAMENT,
          ORIGIN,
          RESET_ALL_FILTERS,
-         CURRENT_PAGE
+         CURRENT_PAGE,
+         DOGS_ORIGIN
 } from './actionsTypes'
 
 const endPointDog='http://localhost:3001/dogs'
@@ -31,11 +32,11 @@ export const getAllDogs = () => {
     }
 }
 
-export const getTemperaments = (temperament)=>{
+export const getTemperaments = (temperaments)=>{
     return async dispatch => {
         try {
-            const { data } = await axios(`${endPointTemperament}/${temperament}`)
-            console.log(data, "esto es data de axios en action1")
+            const { data } = await axios(`${endPointTemperament}/${temperaments}`)
+            
             return dispatch({
                 type: GET_TEMPERAMENTS,
                 payload: data 
@@ -51,7 +52,7 @@ export const getDogsByName = search => {
     return async dispatch => {
         try {
             const { data } = await axios(`${endPointDog}/name?name=${search}`)
-            console.log(data);
+         
             return dispatch({
                 type: SEARCH_BY_NAME,
                 payload: data,
@@ -146,4 +147,13 @@ export const setCurrentPage = page => {
 			payload: Number(page),
 		})
 	}
+}
+
+export const dogsOrigin = order => {
+    return async dispatch => {
+    return dispatch ({
+        type: DOGS_ORIGIN,
+        payload: order
+    })
+}
 }
