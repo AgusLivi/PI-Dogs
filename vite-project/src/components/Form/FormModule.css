@@ -1,3 +1,20 @@
 .prop {
     margin-top: 50px;
 }
+.checkbox-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Estilos para la etiqueta del checkbox */
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    cursor: pointer;
+  }
+  
+  /* Estilos para el input del checkbox */
+  .checkbox-input {
+    margin-right: 8px;
+  }

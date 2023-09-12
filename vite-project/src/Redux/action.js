@@ -112,16 +112,10 @@ export const setSelectedOrder = order => {
 }
 export const setSelectedOrigin = origin => {
 	return async dispatch => {
-        try {
-            const { data } = await axios.post('http://localhost:3001/');
             return dispatch({
                 type: SELECTED_ORIGIN,
                 payload: origin,
             })
-        }catch{
-
-        }
-		
 	}
 }
 export const dogsFrom = typeOfId => {

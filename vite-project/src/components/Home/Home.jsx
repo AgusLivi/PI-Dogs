@@ -8,7 +8,6 @@ import {
   setSelectedOrigin, // Agrega setSelectedOrigin al import
   orderDogs,
   dogsOrigin,
-  getTemperaments,
   setSelectedTemperaments
 } from '../../Redux/action'; // Importa las acciones necesarias
 

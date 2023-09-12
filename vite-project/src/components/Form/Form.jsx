@@ -1,6 +1,7 @@
 import React,{useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { createDog, getTemperaments } from '../../Redux/action'
+import './FormModule.css'
 const Form = () => {
   const dispatch = useDispatch()
   const [formData, setFormData] = useState({
@@ -127,19 +128,24 @@ const Form = () => {
         <br />
      
         <br />
+        <label>
+          Temperament:
+          <div className='checkbox-container'>
          {allTemperaments.map((temp, index)=>(
-            <div key={index}>
-            <input
+            <label key={index} className='checkbox-label'>
+            <input  
             type="checkbox"
             name={temp}
             value={formData.id}
             checked={formData.temperaments.includes(temp)}
             onChange={handleTemperamentChange}
+            className='checkbox-input'
             />
              {temp}
-            </div>
-      
-    ))}
+             </label>
+             ))}
+             </div>
+           </label>
         <br />
         <button type="submit">Crear Raza</button>
       </form>

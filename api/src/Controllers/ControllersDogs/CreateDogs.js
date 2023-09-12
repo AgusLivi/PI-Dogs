@@ -72,6 +72,7 @@ const postDog = async (req, res) => {
       image,
       temperaments,
      })
+     console.log(newDog.temperaments)
      
         // Asocia los temperamentos al perro recién creado
      if (temperaments && temperaments.length > 0) {

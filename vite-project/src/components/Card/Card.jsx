@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './CardModule.css'
 
 const Card = ({name, id, weight, temperament, image}) => {
-
+console.log(id)
   return (
     <div className='card'>
 

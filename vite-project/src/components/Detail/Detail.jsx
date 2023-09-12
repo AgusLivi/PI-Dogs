@@ -6,6 +6,7 @@ const Detail = () => {
   const [dog, setDog] = useState({})
 	const [error, setError] = useState(false)
   const { id } = useParams();
+  console.log(id)
   // const [dogData, setDogData] = useState(null);
   
   const request = async () => {
@@ -30,14 +31,20 @@ const Detail = () => {
 		life_span,
 		temperament,
 		origin,
+    image,
+    weight_max,
+    weight_min
 	} = dog
+  console.log(dog.weight_max)
 
   return (
     <div>
     {dog ? (
       <>
         <h1>ID: {id}</h1>
+        {isNaN(id)? <img src={image} alt={"cargando"}/> :
         <img src={`https://cdn2.thedogapi.com/images/${reference_image_id}.jpg`} alt={name} />
+        }
         <h2>Nombre: {name}</h2>
         {height && (
           <>
@@ -49,9 +56,18 @@ const Detail = () => {
           <>
             <p>Peso Imperial: {weight.imperial}</p>
             <p>Peso Métrico: {weight.metric}</p>
+            
           </>
         )}
-        {/* Otras propiedades */}
+        {weight_min && (
+          <p>Peso Minimo: {weight_min}</p>
+        )}
+        {weight_max && (
+          <p>Peso Maximo: {weight_max}</p>
+        )}
+        {life_span && (
+          <p>Esperanza de Vida: {life_span}</p>
+        )}
       </>
     ) : (
       <p>Cargando datos del perro...</p>

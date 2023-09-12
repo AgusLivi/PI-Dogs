@@ -13,8 +13,10 @@ const getAllDogs = async (req, res) => {
     const { data: apiData } = await axios.get(`${URL}/?api_key=${API_KEY}`);
     const getDbData = async () => {
       const data = await Dog.findAll({
+    
         include: Temperaments,
       });
+      console.log(data)
     
       return data;
     };  

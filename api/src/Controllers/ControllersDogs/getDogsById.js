@@ -25,6 +25,7 @@ const getDogsById = async (req, res) =>{
                     image: localDog.image,
                     name: localDog.name,
                     weight_min: localDog.weight_min,
+                    weight_max: localDog.weight_max,
                     life_span: localDog.life_span,
                     Temperaments: localDog.Temperaments.map(temp => temp.name)
                 };
