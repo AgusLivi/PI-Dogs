@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'
 import axios from 'axios';
-
+import './DetailModule.css'
 const Detail = () => {
   const [dog, setDog] = useState({})
 	const [error, setError] = useState(false)
@@ -34,12 +34,13 @@ const Detail = () => {
     image,
     weight_max,
     weight_min,
+    Temperamens
     
 	} = dog
 
 
   return (
-    <div>
+    <div className="detail-container">
     {dog ? (
       <>
         
@@ -47,41 +48,45 @@ const Detail = () => {
         <img src={`https://cdn2.thedogapi.com/images/${reference_image_id}.jpg`} alt={name} />
         }
         <h2>ID: {id}</h2>
-        <h2>Nombre: {name}</h2>
+        <h2 className='data-label'>Nombre:</h2>
+        <p className='data-label'>{name}</p>
         {breed_group && (
-          <p>Grupo De Raza: {breed_group}</p>
+          <p className='data-label'>Grupo De Raza: {breed_group}</p>
         )}
          {life_span && (
-          <p>Esperanza de Vida: {life_span}</p>
+          <p className='data-label'>Esperanza de Vida: {life_span}</p>
         )}
         {bred_for && (
-          <p>Criado Para: {bred_for}</p>
+          <p className='data-label'>Criado Para: {bred_for}</p>
         )}
          {origin && (
-          <p>Origen: {origin}</p>
+          <p className='data-label'>Origen: {origin}</p>
         )
         }
         
         {height && (
           <>
-            <p>Altura Imperial: {height.imperial} inches</p>
-            <p>Altura Métrica: {height.metric} cm</p>
+            <p className='data-label'>Altura Imperial: {height.imperial} inches</p>
+            <p className='data-label'>Altura Métrica: {height.metric} cm</p>
           </>
         )}
         {weight && (
           <>
-            <p>Peso Imperial: {weight.imperial}</p>
-            <p>Peso Métrico: {weight.metric}</p>
+            <p className='data-label'>Peso Imperial: {weight.imperial}</p>
+            <p className='data-label'>Peso Métrico: {weight.metric}</p>
           </>
         )}
         {weight_min && (
-          <p>Peso Minimo: {weight_min}</p>
+          <p className='data-label'>Peso Minimo: {weight_min}</p>
         )}
         {weight_max && (
-          <p>Peso Maximo: {weight_max}</p>
+          <p className='data-label'>Peso Maximo: {weight_max}</p>
         )}
         {temperament && (
-          <p>Temperamento: {temperament}</p>
+          <p className='data-label'>Temperamento: {temperament}</p>
+        )}
+        {Temperamens && ( 
+          <p className='data-label'>Temperamento: {Temperamens}</p>
         )}
       </>
     ) : (

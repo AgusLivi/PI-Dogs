@@ -24,10 +24,10 @@ const Card = ({name, id, weight,weight2, temperament, image }) => {
     <div className='card'>
 
 
-        <h1>{name}</h1>
-        <h1>{weight}</h1>
-        <h1>{weight2}</h1>
-        <h1>{tempList}</h1>
+        <h2>Nombre: {name}</h2>
+        <h3>Peso Imperial: {weight}</h3>
+        <h3>Peso Metrico: {weight2}</h3>
+        <h3>Temperamentos: {tempList}</h3>
         <img src={image} alt={name}/>
         <Link to={`/dogs/${id}`}>Ver detalle</Link>
                 
