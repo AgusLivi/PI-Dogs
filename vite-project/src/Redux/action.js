@@ -87,6 +87,7 @@ export const filterByTemperament = temperaments => {
 	}
 }
 export const orderDogs = order => {
+   
 	return dispatch => {
 		return dispatch({
 			type: ORDER_DOGS,
@@ -102,22 +103,7 @@ export const setSelectedTemperaments = temperaments => {
 		})
 	}
 }
-export const setSelectedOrder = order => {
-	return dispatch => {
-		return dispatch({
-			type: SELECTED_ORDER,
-			payload: order,
-		})
-	}
-}
-export const setSelectedOrigin = origin => {
-	return async dispatch => {
-            return dispatch({
-                type: SELECTED_ORIGIN,
-                payload: origin,
-            })
-	}
-}
+
 export const dogsFrom = typeOfId => {
 	return dispatch => {
 		return dispatch({
@@ -143,11 +129,11 @@ export const setCurrentPage = page => {
 	}
 }
 
-export const dogsOrigin = order => {
+export const dogsOrigin = origin => {
     return async dispatch => {
     return dispatch ({
         type: DOGS_ORIGIN,
-        payload: order
+        payload: origin
     })
 }
 }

@@ -1,6 +1,7 @@
 export const filterByName = (dogs, dogsFilteredByName) => {
+
 	const filteredDogs = dogs.filter(dog =>
-		dogsFilteredByName.some(dogFiltered => dogFiltered.name === dog.name),
+		dogsFilteredByName.some(dogFiltered => dogFiltered.name === dog.name), //compruebo si un nombre (some) coincide con dogsFiltered
 	)
 	if (!filteredDogs.length)
 		throw new Error(
@@ -10,7 +11,7 @@ export const filterByName = (dogs, dogsFilteredByName) => {
 	return filteredDogs
 }
 
-export const filterMaster = (dogsCopy, selectedFilters) => {
+export const filter = (dogsCopy, selectedFilters) => {
 	
 	const selectedTemperaments = selectedFilters[0].map(
 		selected => selected,

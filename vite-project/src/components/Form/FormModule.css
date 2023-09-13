@@ -1,20 +1,63 @@
-.prop {
-    margin-top: 50px;
+.form-container {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin: 0 auto; /* Centra horizontalmente */
+  max-width: 400px; /* Establece un ancho máximo */
+  display: flex; /* Usa flexbox para centrar verticalmente */
+  flex-direction: column; /* Alinea el contenido verticalmente */
+  align-items: center; /* Alinea el contenido verticalmente */
+  margin-bottom: 20px;
+  background-image: url('/images/background.jpg'); /* Ruta a la imagen de fondo */
+  background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el contenedor */
+  background-repeat: no-repeat; /* Evita la repetición de la imagen */
+  background-position: center center; /* Centra la imagen horizontal y verticalmente */
+  color: #980000; 
+}
+
+.form-title {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+.form-label {
+  font-size: 16px;
+  color: #555;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-button:hover {
+  background-color: #0056b3;
 }
 .checkbox-container {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  /* Estilos para la etiqueta del checkbox */
-  .checkbox-label {
-    display: flex;
-    align-items: center;
-    margin-bottom: 8px;
-    cursor: pointer;
-  }
-  
-  /* Estilos para el input del checkbox */
-  .checkbox-input {
-    margin-right: 8px;
-  }
+  display: flex;
+  flex-direction: column;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.checkbox-input {
+  margin-right: 5px;
+}

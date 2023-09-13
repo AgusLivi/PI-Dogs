@@ -2,26 +2,23 @@ import React, { useState } from 'react';
 import Cards from '../Cards/Cards';
 import SearchBar from '../SearchBar/SearchBar';
 import { useDispatch, useSelector } from 'react-redux'; // Importa useDispatch y useSelector
-
+import './HomeModule.css'
 import {
-  filterByTemperament,
-  setSelectedOrigin, // Agrega setSelectedOrigin al import
+  filterByTemperament, 
   orderDogs,
   dogsOrigin,
-  setSelectedTemperaments
+  setSelectedTemperaments,
+  resetAllFilters
 } from '../../Redux/action'; // Importa las acciones necesarias
 
 function HomePage() {
   const dispatch = useDispatch();
-  const filteredDogs = useSelector((state) => state.dogs); // Accede a los resultados filtrados en el estado de Redux
   const temperaments = useSelector((state) => state.temperament); // Supongamos que tienes una lista de temperamentos en tu estado de Redux
-  const originOptions = useSelector((state) => state.selectedOrigin);
-  
+ 
   // Estados locales para los selectores
   const [selectedTemperament, setSelectedTemperament] = useState(''); // Estado para el selector de temperamento
-  const [selectedOrigin, setSelectedOriginLocal] = useState(''); // Estado para el selector de origen
   const [selectedOrder, setSelectedOrder] = useState(''); // Estado para el selector de orden
-
+  const [selectedOrigin, setSelectedOrigin] = useState('')
   // Función para aplicar el filtro de temperamento
   const handleTemperamentChange = (value) => {
     dispatch(setSelectedTemperaments([value]))
@@ -29,19 +26,22 @@ function HomePage() {
     dispatch(filterByTemperament([value])); // Despacha una acción para aplicar el filtro en el estado de Redux
   };
 
-  // Función para aplicar el filtro de origen
-  const handleOriginChange = (value) => {
-    setSelectedOriginLocal(value);
-    dispatch(setSelectedOrigin(value));
-  };
   const handleOrderChange = (value) => {
     setSelectedOrder(value); // Actualiza el estado local del selector
-    dispatch(orderDogs(value)); // Despacha una acción para aplicar el filtro en el estado de Redux
+    dispatch(orderDogs(value));
+ // Despacha una acción para aplicar el filtro en el estado de Redux
   };
   const filterOrigin = (e) => {
     const { value } = e.target;
     dispatch(dogsOrigin(value));
+    setSelectedOrigin(value)
   };
+  const handleResetFilters = () => {
+    dispatch(resetAllFilters())
+    setSelectedTemperament('')
+    setSelectedOrder('')
+    setSelectedOrigin('')
+  }
 
 
  
@@ -49,9 +49,9 @@ function HomePage() {
   return (
     <div>
       <SearchBar />
-
-      {/* Selector de temperamento */}
+  
       <select
+        className="select"
         onChange={(e) => handleTemperamentChange(e.target.value)}
         value={selectedTemperament}
       >
@@ -63,39 +63,34 @@ function HomePage() {
         ))}
       </select>
 
-      {/* Selector de origen */}
-      <select
-        onChange={(e) => handleOriginChange(e.target.value)}
-        value={selectedOrigin}
-      >
-        <option value="">Selecciona un origen</option>
-        {originOptions.map((origin) => (
-          <option key={origin} value={origin}>
-            {origin}
-          </option>
-        ))}
-      </select>
+     
 
-      {/* Selector de orden */}
-      <select
+      
+      <select className='select'
         onChange={(e) => handleOrderChange(e.target.value)}
         value={selectedOrder}
       >
         <option value="">Selecciona un orden</option>
         <option value="A - Z">A - Z</option>
         <option value="Z - A">Z - A</option>
-        {/* Agrega más opciones de orden según tus necesidades */}
+        <option value="Ascending Weight">Ascending Weight</option>
+        <option value="Descending Weight">Descending Weight</option>
+       
       </select>
 
-      {/*selector api o base de datos*/}
-      <select name="Origin" onChange={filterOrigin}>
+      <select className='select'
+       name="Origin" onChange={filterOrigin}
+      value={selectedOrigin}>
             <optgroup key="origin" label="Origin">
+            <option value="">Selecciona un origen</option>
             <option value="api">API</option>
             <option value="db">DB</option>
            </optgroup>
           </select>
 
-      
+      <button className="button"
+      onClick={handleResetFilters}>Restablecer Filtros</button>
+
         <Cards />
       
     </div>

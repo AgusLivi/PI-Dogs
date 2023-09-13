@@ -6,7 +6,7 @@ const Detail = () => {
   const [dog, setDog] = useState({})
 	const [error, setError] = useState(false)
   const { id } = useParams();
-  console.log(id)
+  // console.log(id)
   // const [dogData, setDogData] = useState(null);
   
   const request = async () => {
@@ -33,9 +33,10 @@ const Detail = () => {
 		origin,
     image,
     weight_max,
-    weight_min
+    weight_min,
+    
 	} = dog
-  console.log(dog.weight_max)
+
 
   return (
     <div>
@@ -46,6 +47,19 @@ const Detail = () => {
         <img src={`https://cdn2.thedogapi.com/images/${reference_image_id}.jpg`} alt={name} />
         }
         <h2>Nombre: {name}</h2>
+        {breed_group && (
+          <p>Grupo De Raza: {breed_group}</p>
+        )}
+         {life_span && (
+          <p>Esperanza de Vida: {life_span}</p>
+        )}
+        {bred_for && (
+          <p>Criado Para: {bred_for}</p>
+        )}
+         {origin && (
+          <p>Origen: {origin}</p>
+        )
+        }
         {height && (
           <>
             <p>Altura Imperial: {height.imperial} inches</p>
@@ -56,7 +70,6 @@ const Detail = () => {
           <>
             <p>Peso Imperial: {weight.imperial}</p>
             <p>Peso Métrico: {weight.metric}</p>
-            
           </>
         )}
         {weight_min && (
@@ -65,8 +78,8 @@ const Detail = () => {
         {weight_max && (
           <p>Peso Maximo: {weight_max}</p>
         )}
-        {life_span && (
-          <p>Esperanza de Vida: {life_span}</p>
+        {temperament && (
+          <p>Temperamento: {temperament}</p>
         )}
       </>
     ) : (

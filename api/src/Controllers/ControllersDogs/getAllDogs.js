@@ -16,7 +16,7 @@ const getAllDogs = async (req, res) => {
     
         include: Temperaments,
       });
-      console.log(data)
+      
     
       return data;
     };  

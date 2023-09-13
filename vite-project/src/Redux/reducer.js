@@ -14,7 +14,7 @@ import {
          DOGS_ORIGIN
 } from './actionsTypes'
 import { ascendingOrder, descendingOrder } from './Filters/Order'
-import { filterByName, filterMaster } from './Filters/Filters'
+import { filterByName, filter } from './Filters/Filters'
 
 const initialState = {
     dogs: [],
@@ -68,7 +68,6 @@ const reducer = (state = initialState, {type, payload}) =>{
                 currentPage: 1,
             }
             case CREATE_DOG:
-              
                 return {
                     ...state,
                     createdDogs: [...state.createdDogs, payload]
@@ -79,20 +78,11 @@ const reducer = (state = initialState, {type, payload}) =>{
                 ...state,
                 selectedOrder: [...payload],
             }
-            case SELECTED_ORDER:
-                return {
-                    ...state,
-                    selectedOrigin: [...payload],
-                }
-                case SELECTED_ORIGIN:
-			return {
-				...state,
-				selectedOrigin: [...payload],
-			}
+         
             case FILTERED_BY_TEMPERAMENT:
                
                 if (payload.length && payload !== 'error') {
-                    filteredDogs = filterMaster(state.dogsCopy, [
+                    filteredDogs = filter(state.dogsCopy, [
                         payload,
                         state.selectedOrigin,
                     ])
@@ -103,7 +93,7 @@ const reducer = (state = initialState, {type, payload}) =>{
                         currentPage: 1,
                     }
                 } else {
-                    filteredDogs = filterMaster(state.dogsCopy, [
+                    filteredDogs = filter(state.dogsCopy, [
                         [],
                         state.selectedOrigin,
                     ])
@@ -117,6 +107,7 @@ const reducer = (state = initialState, {type, payload}) =>{
                     }
                 }
                 case ORDER_DOGS:
+                   
 			if (payload === 'A - Z' || !payload.length) {
 				orderedDogs = ascendingOrder(state.dogs, 'name')
 				orderedCopy = ascendingOrder(state.dogsCopy, 'name')
@@ -189,14 +180,14 @@ const reducer = (state = initialState, {type, payload}) =>{
 
             case DOGS_ORIGIN : {
                 let originDogs = [...state.dogsCopy]
-                if(action.payload === 'All'){
+                if(payload === 'All'){
                     return {
                         ...state,
                         dogs: [...state.dogsCopy]
                     }
                 }
-                if(action.payload === 'api') {
-                    const apiDogs = originDogs.filter((game) => Number.isInteger(game.id))
+                if(payload === 'api') {
+                    const apiDogs = originDogs.filter((dog) => Number.isInteger(dog.id))
                     
     
                     return{
@@ -205,10 +196,10 @@ const reducer = (state = initialState, {type, payload}) =>{
                     }
                 }
     
-                if (action.payload === 'db') {
+                if (payload === 'db') {
                     const uuidv4Pattern = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
                     
-                    const dbDogs = originDogs.filter((game) => uuidv4Pattern.test(game.id));
+                    const dbDogs = originDogs.filter((dog) => uuidv4Pattern.test(dog.id));
                    
                     
                     return {

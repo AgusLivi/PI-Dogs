@@ -9,14 +9,13 @@ const Cards = () => {
     const allDogs = useSelector((state)=>state.dogs)
     const elementosPorPagina = 8;
     const paginaActual = useSelector((state)=> state.currentPage)
-    console.log(allDogs)
-
+    const totalPaginas = Math.ceil(allDogs.length / elementosPorPagina)
+    // console.log(allDogs);
 
 
     useEffect(() => {
         dispatch(getAllDogs())
         dispatch(getTemperaments())
-
       }, [dispatch])
 
         // Función para mostrar los perros de la página actual
@@ -45,17 +44,17 @@ const Cards = () => {
 
 
 
-  console.log(allDogs.map((dog) => dog.image));
 return (
-  <div >
+  <div className='cards-container'>
     {mostrarPerrosEnPagina().map((dog) => (
       <Card
         key={dog?.id}
         id={dog?.id}
         name={dog?.name}
-        temperament={dog?.temperament}
-        weight={dog?.weight?.metric  ? dog.weight.metric : dog.weight_min }
+        temperament={dog?.temperament ? dog.temperament : dog.Temperaments}
+        weight={dog?.weight?.metric  ? dog.weight.metric : `${dog.weight_min} - ${dog.weight_max}` }
         image={dog?.image?.url ? dog.image.url : dog.image}
+        weight2={dog?.weight?.imperial}
       />
     ))}
 
@@ -63,7 +62,7 @@ return (
       <button className="pagination-btn" onClick={() => irAPaginaAnterior()}>
         Anterior
       </button>
-      <span>Página {paginaActual}</span>
+      <span>Página {paginaActual} / {totalPaginas || 1}</span>
       <button className="pagination-btn" onClick={() => irAPaginaSiguiente()}>
         Siguiente
       </button>

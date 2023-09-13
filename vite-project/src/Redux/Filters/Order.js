@@ -1,47 +1,85 @@
 export const ascendingOrder = (array, orderId) => {
+	// console.log(orderId);
+  
 	if (orderId === 'name') {
-		return array.sort((a, b) => {
-			if (a.name > b.name) return 1
-			if (a.name < b.name) return -1
-			return 0
-		})
+	  return array.sort((a, b) => {
+		if (a.name > b.name) return 1;
+		if (a.name < b.name) return -1;
+		return 0;
+	  });
 	} else if (orderId === 'weight') {
-		return array.sort((a, b) => {
-			const [minA] = a.weight?.imperial.split(/\s*-\s*|\s*–\s*/).map(Number)
-			const [minB] = b.weight?.imperial.split(/\s*-\s*|\s*–\s*/).map(Number)
-
-			if (isNaN(minA)) {
-				return 1 // Move NaN elements to the end of the array
-			}
-			if (isNaN(minB)) {
-				return -1 // Move NaN elements to the end of the array
-			}
-
-			return minA - minB
-		})
+	  // Verificar si se debe ordenar por peso mínimo o promedio
+	  return array.sort((a, b) => {
+		if (a.weight && b.weight) {
+		  const minA = parseInt(a.weight.imperial.split(/\s*-\s*|\s*–\s*/)[0], 10) || 0;
+		  const minB = parseInt(b.weight.imperial.split(/\s*-\s*|\s*–\s*/)[0], 10) || 0;
+  
+		  // Comprobar si el peso mínimo está disponible para ambos perros
+		  if (!isNaN(minA) && !isNaN(minB)) {
+			return minA - minB; // Ordenar por peso mínimo
+		  }
+		}
+  
+		// Si no se cumple ninguna condición anterior, ordenar por peso promedio
+		const getWeightAverage = (dog) => {
+		  const minWeight = parseInt(dog.weight_min, 10) || 0;
+		  const maxWeight = parseInt(dog.weight_max, 10) || 0;
+		  return (minWeight + maxWeight) / 2;
+		};
+  
+		const weightA = getWeightAverage(a);
+		const weightB = getWeightAverage(b);
+  
+		return weightA - weightB;
+	  });
 	}
-}
-
-export const descendingOrder = (array, orderId) => {
+  }
+  export const descendingOrder = (array, orderId) => {
+	console.log(orderId);
 	if (orderId === 'name') {
-		return array.sort((a, b) => {
-			if (a.name > b.name) return -1
-			if (a.name < b.name) return 1
-			return 0
-		})
+	  return array.sort((a, b) => {
+		if (a.name > b.name) return -1; // Invertir el orden de retorno
+		if (a.name < b.name) return 1; // Invertir el orden de retorno
+		return 0;
+	  });
 	} else if (orderId === 'weight') {
-		return array.sort((a, b) => {
-			const [minA] = a.weight?.imperial.split(/\s*-\s*|\s*–\s*/).map(Number)
-			const [minB] = b.weight?.imperial.split(/\s*-\s*|\s*–\s*/).map(Number)
-
-			if (isNaN(minA)) {
-				return 1 // Move NaN elements to the end of the array
+		const  allDogs = array.map(dog => {
+			if(isNaN(dog.id)) {
+				return {
+					...dog,
+					weight:{imperial:`${dog.weight_min} - ${dog.weight_max}`}
+				}
 			}
-			if (isNaN(minB)) {
-				return -1 // Move NaN elements to the end of the array
+			else{
+				return dog
 			}
-
-			return minB - minA
-		})
-	}
-}
+		}) 
+		return allDogs.sort((a, b) => {
+			if (a.weight && b.weight) {
+			  const minA = parseInt(a.weight.imperial.split(/\s*-\s*|\s*–\s*/)[0], 10) || 0;
+			  const minB = parseInt(b.weight.imperial.split(/\s*-\s*|\s*–\s*/)[0], 10) || 0;
+	  
+			  // Comprobar si el peso mínimo está disponible para ambos perros
+			  if (!isNaN(minA) && !isNaN(minB)) {
+				return minB - minA; // Ordenar por peso mínimo
+			  }
+			}
+		
+	  
+			// Si no se cumple ninguna condición anterior, ordenar por peso promedio
+			// const getWeightAverage = (dog) => {
+			//   const minWeight = parseInt(dog.weight_min, 10) || 0;
+			//   const maxWeight = parseInt(dog.weight_max, 10) || 0;
+			
+			//   return (minWeight + maxWeight) / 2;
+			// };
+	  
+			// const weightA = getWeightAverage(a);
+			// const weightB = getWeightAverage(b);
+	  
+		
+		  });
+		}
+	 
+  }
+  

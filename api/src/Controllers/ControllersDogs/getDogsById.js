@@ -27,8 +27,13 @@ const getDogsById = async (req, res) =>{
                     weight_min: localDog.weight_min,
                     weight_max: localDog.weight_max,
                     life_span: localDog.life_span,
+                    // origin: localDog.origin,
+                    // bred_for: localDog.bred_for,
+                    // breed_group: localDog.breed_group,
                     Temperaments: localDog.Temperaments.map(temp => temp.name)
+        
                 };
+               
                 res.json(modifiedData);
                 
             } else {

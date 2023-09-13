@@ -5,8 +5,8 @@ function Navbar() {
   return (
     <div className="navbar">
       <ul>
-        <li><Link to="/">Inicio</Link></li>
-        <li><Link to="/form">Crear Nueva Raza</Link></li>
+        <li><Link to="/">Log Out</Link></li>
+        <li><Link to="/form">Create New breed</Link></li>
         <li><Link to="/Home">Home</Link></li>
       </ul>
     </div>
