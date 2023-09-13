@@ -4,12 +4,15 @@ import { createDog, getTemperaments } from '../../Redux/action'
 import './FormModule.css'
 const Form = () => {
   const dispatch = useDispatch()
+  const [alertMessage, setAlertMessage] = useState('');
   const [formData, setFormData] = useState({
     name:'',
     image:'',
     weight_min:'',
     weight_max:'',
     life_span:'',
+    height_min:'',
+    height_max:'',
     temperaments: []
   })
   const allTemperaments = useSelector((state)=>state.temperament)
@@ -52,9 +55,12 @@ const Form = () => {
       weight_max: formData.weight_max,
       weight_min: formData.weight_min,
       life_span: formData.life_span,
+      height_max: formData.height_max,
+      height_min: formData.height_min,
       temperaments: formData.temperaments
     }
-    dispatch(createDog(formDataToSend));
+    try {
+    await dispatch(createDog(formDataToSend));
     // Limpia los campos del formulario después de enviar
     setFormData({
       name: '',
@@ -62,8 +68,14 @@ const Form = () => {
       weight_min: '',
       weight_max: '',
       life_span: '',
+      height_max: '',
+      height_min:'',
       temperaments: [],
     })
+    setAlertMessage('El perro se creó con éxito.')
+    }catch (error) {
+      console.error('error al crear el perro:', error)
+    }
   }
 
 
@@ -97,43 +109,69 @@ const Form = () => {
           />
         </label>
         <br />
-        <label>
+        <label className='form-label'>
           Peso minimo:
           <input
           type = "number"
           name = "weight_min"
           value={formData.weight_min}
           onChange={handleInputChange}
+          className='form-input'
         />
         </label>
         <br />
-        <label>
+        <label className='form-label'>
           Peso Máximo:
           <input
             type="number"
             name="weight_max"
             value={formData.weight_max}
             onChange={handleInputChange}
+            className='form-input'
           />
         </label>
         <br />
-        <label>
+        <label className='form-label'>
         Años de Vida:
           <input
           type="number"
           name="life_span"
           value={formData.life_span}
           onChange={handleInputChange}
+          className='form-input'
           />
         </label>
         <br />
+        <label className='form-label'>
+          Altura Mínima:
+          <input
+          type='number'
+          name='height_min'
+          value={formData.height_min}
+          onChange={handleInputChange}
+          className='form-input'
+          />
+        </label>
+        <br />
+        <label className='form-label'>
+          Altura Máxima:
+          <input
+          type='number'
+          name='height_max'
+          value={formData.height_max}
+          onChange={handleInputChange}
+          className='form-input'
+          />
+        </label>
      
         <br />
         <label>
           Temperament:
+          
           <div className='checkbox-container'>
          {allTemperaments.map((temp, index)=>(
-            <label key={index} className='checkbox-label'>
+          <div key={index} className='checkbox-row'>
+            <label  className='checkbox-label'>
             <input  
             type="checkbox"
             name={temp}
@@ -144,10 +182,17 @@ const Form = () => {
             />
              {temp}
              </label>
+             </div>
              ))}
              </div>
            </label>
         <br />
+        {alertMessage && (
+         <div className="alert">
+       {alertMessage}
+    <button onClick={() => setAlertMessage('')}>Cerrar</button>
+  </div>
+)}
         <button className="form-button"type="submit">Crear Raza</button>
       </form>
 

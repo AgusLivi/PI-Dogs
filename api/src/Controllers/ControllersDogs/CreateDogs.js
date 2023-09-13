@@ -9,7 +9,9 @@ const postDog = async (req, res) => {
         weight_max,
         life_span,
         image,
+        height_min,
         temperaments,
+        height_max,
         // bred_for,
         // breed_group,
         // origin
@@ -21,10 +23,8 @@ const postDog = async (req, res) => {
       weight_max,
       life_span,
       image,
-      // bred_for,
-      // breed_group,
-      // origin
-     
+      height_max,
+      height_min,
      })
      
      

@@ -42,10 +42,11 @@ const Detail = () => {
     <div>
     {dog ? (
       <>
-        <h1>ID: {id}</h1>
+        
         {isNaN(id)? <img src={image} alt={"cargando"}/> :
         <img src={`https://cdn2.thedogapi.com/images/${reference_image_id}.jpg`} alt={name} />
         }
+        <h2>ID: {id}</h2>
         <h2>Nombre: {name}</h2>
         {breed_group && (
           <p>Grupo De Raza: {breed_group}</p>
@@ -60,6 +61,7 @@ const Detail = () => {
           <p>Origen: {origin}</p>
         )
         }
+        
         {height && (
           <>
             <p>Altura Imperial: {height.imperial} inches</p>
