@@ -85,9 +85,7 @@ const Detail = () => {
         {temperament && (
           <p className='data-label'>Temperamento: {temperament}</p>
         )}
-        {Temperamens && ( 
-          <p className='data-label'>Temperamento: {Temperamens}</p>
-        )}
+      
       </>
     ) : (
       <p>Cargando datos del perro...</p>

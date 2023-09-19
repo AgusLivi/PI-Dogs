@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import './CardModule.css'
 
-const Card = ({name, id, weight,weight2, temperament, image }) => {
+const Card = ({name, id, weight,weight2, temperament, image, creator }) => {
 
   let temperamentList = [];
 
@@ -28,6 +28,7 @@ const Card = ({name, id, weight,weight2, temperament, image }) => {
         <h3>Peso Imperial: {weight}</h3>
         <h3>Peso Metrico: {weight2}</h3>
         <h3>Temperamentos: {tempList}</h3>
+        <h3>Creador: {creator}</h3>
         <img src={image} alt={name}/>
         <Link to={`/dogs/${id}`}>Ver detalle</Link>
                 

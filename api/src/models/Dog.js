@@ -51,6 +51,11 @@ module.exports = (sequelize) => {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
+  creator: {
+    type: DataTypes.STRING,
+    allowNull: false
+  }
+
 },
       { timestamps: false }
    );

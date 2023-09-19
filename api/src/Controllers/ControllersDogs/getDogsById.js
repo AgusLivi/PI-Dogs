@@ -29,6 +29,7 @@ const getDogsById = async (req, res) =>{
                     life_span: localDog.life_span,
                     height_min: localDog.height_min,
                     height_max: localDog.height_max,
+                    creator: localDog.creator,
                     Temperaments: localDog.Temperaments.map(temp => temp.name)
         
                 };

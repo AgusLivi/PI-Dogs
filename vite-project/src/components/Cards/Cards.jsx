@@ -55,6 +55,7 @@ return (
         weight={dog?.weight?.metric  ? dog.weight.metric : `${dog.weight_min} - ${dog.weight_max}` }
         image={dog?.image?.url ? dog.image.url : dog.image}
         weight2={dog?.weight?.imperial}
+        creator={dog?.creator}
       />
     ))}
 

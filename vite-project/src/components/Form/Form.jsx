@@ -13,6 +13,7 @@ const Form = () => {
     life_span:'',
     height_min:'',
     height_max:'',
+    creator:'',
     temperaments: []
   })
   const allTemperaments = useSelector((state)=>state.temperament)
@@ -56,9 +57,6 @@ const Form = () => {
     }
   }
 
-   
-
-
     setFormData({
       ...formData,
       [name]: value,
@@ -90,6 +88,7 @@ const Form = () => {
 
   const handleSubmit = async (event) =>{
     event.preventDefault();
+   
     const formDataToSend = {
       name: formData.name,
       image: formData.image,
@@ -98,6 +97,7 @@ const Form = () => {
       life_span: formData.life_span,
       height_max: formData.height_max,
       height_min: formData.height_min,
+      creator: formData.creator,
       temperaments: formData.temperaments
     }
     try {
@@ -194,6 +194,7 @@ const Form = () => {
           />
         </label>
         <br />
+        
         <label className='form-label'>
           Altura Máxima:
           <input
@@ -203,6 +204,15 @@ const Form = () => {
           onChange={handleInputChange}
           className='form-input'
           />
+        </label>
+        <br />
+        <label>
+          <input 
+          type='text'
+          name='creator'
+          value={formData.creator}
+          onChange={handleInputChange}
+        />
         </label>
      
         <br />

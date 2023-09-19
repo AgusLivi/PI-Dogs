@@ -12,9 +12,8 @@ const postDog = async (req, res) => {
         height_min,
         temperaments,
         height_max,
-        // bred_for,
-        // breed_group,
-        // origin
+        creator,
+      
     } = req.body
     
     const newDog = await Dog.create({
@@ -25,6 +24,7 @@ const postDog = async (req, res) => {
       image,
       height_max,
       height_min,
+      creator
      })
      
      
@@ -38,7 +38,7 @@ const postDog = async (req, res) => {
 
       await newDog.setTemperaments(temperamentModels);
     }
-     
+     //a
      res.status(201).json(newDog);
   } catch(error){
     console.error(error);
